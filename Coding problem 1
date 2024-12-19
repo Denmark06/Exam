@@ -1,0 +1,13 @@
+function isPalindrome(str) {
+  const reversedStr = str.split("").reverse().join("");
+  console.log("Original string:", str);
+  console.log("Reversed string:", reversedStr);
+  return str === reversedStr;
+}
+
+let str1 = prompt("Enter the first string:");
+let str2 = prompt("Enter the second string:");
+
+console.log(str1 + " is a palindrome: " + isPalindrome(str1));
+console.log(str2 + " is a palindrome: " + isPalindrome(str2));
+
