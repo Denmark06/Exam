@@ -1,0 +1,83 @@
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.size = 0;
+  }
+
+  append(data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      let current = this.head;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
+    this.size++;
+    this.print();
+  }
+
+  print() {
+    if (!this.head) {
+      console.log("List is empty");
+      return;
+    }
+    let current = this.head;
+    let output = "";
+    while (current) {
+      output += current.data + " ";
+      current = current.next;
+    }
+    console.log("Linked List:", output);
+  }
+
+  bubbleSort(){
+    if(!this.head || !this.head.next) return; //Nothing to sort
+
+    let swapped;
+    do{
+      swapped = false;
+      let current = this.head;
+      let prev = null;
+      while(current.next){
+        if(current.data > current.next.data){
+          //Swap
+          if(prev){
+            prev.next = current.next;
+          } else {
+            this.head = current.next;
+          }
+          let temp = current.next;
+          current.next = temp.next;
+          temp.next = current;
+          prev = temp;
+          swapped = true;
+        } else {
+          prev = current;
+          current = current.next;
+        }
+      }
+    } while (swapped);
+  }
+}
+
+const list = new LinkedList();
+list.append(0); 
+list.append(1); 
+list.append(2); 
+
+console.log("List after appending:");
+list.print();
+
+console.log("List after sorting:");
+list.bubbleSort();
+list.print();
